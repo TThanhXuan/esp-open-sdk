@@ -119,6 +119,19 @@ $ make STANDALONE=n
 
 This will download all necessary components and compile them.
 
+Troubleshooting
+===================
+configure: error: missing required tool: gobjcopy objcopy
+Solution: gtexport PATH="/usr/local/opt/binutils/bin:$PATH"
+
+sed: illegal option -- r
+Solution: PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
+Build failed in step 'Installing ncurses for build'
+
+Solution: Reset the $PATH so that brew binutils is removed from it, as mentioned in this comment https://github.com/pfalcon/esp-open-sdk/issues/342#issuecomment-468391431
+I think the easiest way to do this is to open a new terminal window/tab (if the path was only modified temporarily)
+
 Using the toolchain
 ===================
 
@@ -162,6 +175,7 @@ results.
 
 Additional configuration
 ========================
+
 
 You can build a statically linked toolchain by uncommenting
 `CT_STATIC_TOOLCHAIN=y` in the file `crosstool-config-overrides`. More
